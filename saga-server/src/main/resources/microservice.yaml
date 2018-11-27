@@ -1,0 +1,25 @@
+scse-config-order: 100
+APPLICATION_ID: yanwu-development
+service_description:
+  name: saga-server
+  version: 0.4.3
+  environment: development
+cse:
+  service:
+    registry:
+      address: http://127.0.0.1:30100
+      instance:
+        watch: false
+  rest:
+    address: 0.0.0.0:9993
+    server:
+      thread-count: 10
+  uploads:
+    directory: tmp
+
+servicecomb:
+  #Add Saga Handler
+  handler:
+    chain:
+      Provider:
+        default: saga-provider

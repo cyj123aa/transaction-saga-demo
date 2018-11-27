@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yanwu.demo.saga.server.dao.mapper.DemoServerMapper">
+  <resultMap id="BaseResultMap" type="com.yanwu.demo.saga.server.dao.model.DemoServer">
+    <!--
+    @mbggenerated
+    -->
+    <id column="server_id" jdbcType="INTEGER" property="serverId" />
+    <result column="server_name" jdbcType="VARCHAR" property="serverName" />
+    <result column="server_password" jdbcType="VARCHAR" property="serverPassword" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbggenerated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbggenerated
+    -->
+    server_id, server_name, server_password
+  </sql>
+  <select id="selectByExample" parameterType="com.yanwu.demo.saga.server.dao.model.DemoServerExample" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from demo_server
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+    @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from demo_server
+    where server_id = #{serverId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    delete from demo_server
+    where server_id = #{serverId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yanwu.demo.saga.server.dao.model.DemoServerExample">
+    <!--
+    @mbggenerated
+    -->
+    delete from demo_server
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyProperty="serverId" parameterType="com.yanwu.demo.saga.server.dao.model.DemoServer" useGeneratedKeys="true">
+    <!--
+    @mbggenerated
+    -->
+    insert into demo_server (server_name, server_password)
+    values (#{serverName,jdbcType=VARCHAR}, #{serverPassword,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyProperty="serverId" parameterType="com.yanwu.demo.saga.server.dao.model.DemoServer" useGeneratedKeys="true">
+    <!--
+    @mbggenerated
+    -->
+    insert into demo_server
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serverName != null">
+        server_name,
+      </if>
+      <if test="serverPassword != null">
+        server_password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serverName != null">
+        #{serverName,jdbcType=VARCHAR},
+      </if>
+      <if test="serverPassword != null">
+        #{serverPassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yanwu.demo.saga.server.dao.model.DemoServerExample" resultType="java.lang.Integer">
+    <!--
+    @mbggenerated
+    -->
+    select count(*) from demo_server
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update demo_server
+    <set>
+      <if test="record.serverId != null">
+        server_id = #{record.serverId,jdbcType=INTEGER},
+      </if>
+      <if test="record.serverName != null">
+        server_name = #{record.serverName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serverPassword != null">
+        server_password = #{record.serverPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbggenerated
+    -->
+    update demo_server
+    set server_id = #{record.serverId,jdbcType=INTEGER},
+      server_name = #{record.serverName,jdbcType=VARCHAR},
+      server_password = #{record.serverPassword,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yanwu.demo.saga.server.dao.model.DemoServer">
+    <!--
+    @mbggenerated
+    -->
+    update demo_server
+    <set>
+      <if test="serverName != null">
+        server_name = #{serverName,jdbcType=VARCHAR},
+      </if>
+      <if test="serverPassword != null">
+        server_password = #{serverPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where server_id = #{serverId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yanwu.demo.saga.server.dao.model.DemoServer">
+    <!--
+    @mbggenerated
+    -->
+    update demo_server
+    set server_name = #{serverName,jdbcType=VARCHAR},
+      server_password = #{serverPassword,jdbcType=VARCHAR}
+    where server_id = #{serverId,jdbcType=INTEGER}
+  </update>
+</mapper>

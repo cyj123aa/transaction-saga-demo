@@ -1,0 +1,24 @@
+scse-config-order: 100
+APPLICATION_ID: yanwu-development
+service_description:
+  name: saga-client
+  version: 0.4.2
+  environment: development
+cse:
+  service:
+    registry:
+      address: http://127.0.0.1:30100
+      instance:
+        watch: false
+  rest:
+    address: 0.0.0.0:9991
+    server:
+      thread-count: 10
+  uploads:
+    directory: tmp
+
+  #Add Saga Handler
+  handler:
+    chain:
+      Consumer:
+        default: loadbalance,saga-consumer
