@@ -18,8 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SagaServerServiceImpl  {
 
-    @Autowired
-    private DemoServerMapper demoServerMapper;
+
 
     /**
      * 该方法提供给saga-client调用
@@ -34,7 +33,7 @@ public class SagaServerServiceImpl  {
     //@Transactional(rollbackFor = Exception.class)
     public int create(DemoServer demoServer) throws Exception {
         System.out.println("========== saga2 transaction test start ==========");
-        int index = demoServerMapper.insert(demoServer);
+      //  int index = demoServerMapper.insert(demoServer);
       //  index = 1 / 0;
         throw new IllegalArgumentException("can not order the peo large than 10  all Rollback");
         //System.out.println("========== saga2 transaction test end ==========");
@@ -49,10 +48,12 @@ public class SagaServerServiceImpl  {
      */
     public int createRollback(DemoServer demoServer) {
         System.out.println("========== create server2 rollback ==========");
-        DemoServerExample example = new DemoServerExample();
+      /*  DemoServerExample example = new DemoServerExample();
         DemoServerExample.Criteria criteria = example.createCriteria();
         criteria.andServerNameEqualTo(demoServer.getServerName());
         criteria.andServerPasswordEqualTo(demoServer.getServerPassword());
-        return demoServerMapper.deleteByExample(example);
+        demoServerMapper.deleteByExample(example);
+      */
+        return 2;
     }
 }

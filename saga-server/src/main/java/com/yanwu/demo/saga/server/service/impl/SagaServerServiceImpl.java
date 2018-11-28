@@ -19,8 +19,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SagaServerServiceImpl  {
 
-    @Autowired
-    private DemoServerMapper demoServerMapper;
+
 
     /**
      * 该方法提供给saga-client调用
